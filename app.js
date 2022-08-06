@@ -23,6 +23,10 @@ const winConditions = [
 let winner = "";
 let money = "💲";
 let honor = "🎩"; //🗡🔪🩸🛡
+//sounds
+let winSoundEffect = new Audio("./sound/win.wav");
+let honorClick = new Audio("./sound/honor.wav");
+let moneyClick = new Audio("./sound/money.wav");
 
 let currentPlayer = "💲";
 //main game function
@@ -33,6 +37,7 @@ function ticTacToe() {
     if (this.innerText == "") {
       // X's move
       if (currentPlayer === "💲") {
+        moneyClick.play();
         this.innerText = currentPlayer;
         currentPlayer = "🎩";
         // loop throug the win condtions arry
@@ -54,6 +59,7 @@ function ticTacToe() {
       //=================================================================== below lies honor
       // Y's move
       else if (currentPlayer === honor) {
+        honorClick.play();
         this.innerText = currentPlayer;
         currentPlayer = "💲";
         // loop throug the win condtions arry
@@ -76,6 +82,8 @@ function ticTacToe() {
   }
   //check if some one won the game
   if (winner != "") {
+    //play sound effect
+    winSoundEffect.play();
     winner_announcer.innerText = `${winner} won`;
     winner_announcer_div.style.zIndex = 1;
     board.style.zIndex = -1;
