@@ -20,6 +20,13 @@ body {
   flex-direction: column;
   background-color: black;
 }
+main {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
 button {
   width: 150px;
   height: 50px;
@@ -71,4 +78,9 @@ button:active {
   padding: 50px;
   color: white;
   z-index: -1;
+}
+/* ============================== counters ============================== */
+.counter {
+  color: white;
+  font-size: 32px;
 }

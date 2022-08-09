@@ -5,6 +5,9 @@ const resetBtn = document.getElementsByClassName("reset")[0];
 const newGameBtn = document.getElementsByClassName("newGame")[0];
 const play_againBtn = document.getElementById("play-again");
 const winner_announcer = document.getElementById("winner-announcer");
+
+const money_counter = document.getElementById("money-counter");
+const honor_counter = document.getElementById("honor-counter");
 /*
         [0,1,2]
         [3,4,5]
@@ -23,6 +26,8 @@ const winConditions = [
 let winner = "";
 let money = "💲";
 let honor = "🎩"; //🗡🔪🩸🛡
+let money_wins = 0;
+let honor_wins = 0;
 //sounds
 let winSoundEffect = new Audio("./sound/win.wav");
 let honorClick = new Audio("./sound/honor.wav");
@@ -37,6 +42,7 @@ function ticTacToe() {
     if (this.innerText == "") {
       // X's move
       if (currentPlayer === "💲") {
+        //play money's click
         moneyClick.play();
         this.innerText = currentPlayer;
         currentPlayer = "🎩";
@@ -52,13 +58,16 @@ function ticTacToe() {
           }
           if (x == 3) {
             console.log("💲 won");
-            winner = currentPlayer;
+            money_wins++;
+            money_counter.innerText = money_wins;
+            winner = money;
           }
         }
       }
       //=================================================================== below lies honor
       // Y's move
       else if (currentPlayer === honor) {
+        // play honor click audio
         honorClick.play();
         this.innerText = currentPlayer;
         currentPlayer = "💲";
@@ -72,8 +81,11 @@ function ticTacToe() {
               o++;
             }
           }
+          // if honor wins
           if (o == 3) {
             console.log("🎩 won");
+            honor_wins++;
+            honor_counter.innerText = honor_wins;
             winner = honor;
           }
         }
@@ -113,4 +125,10 @@ resetBtn.addEventListener("click", () => {
 newGameBtn.addEventListener("click", reset);
 newGameBtn.addEventListener("click", () => {
   currentPlayer = money;
+  money_wins = 0;
+  honor_wins = 0;
+  honor_wins = 0;
+  money_wins = 0;
+  honor_counter.innerText = 0;
+  money_counter.innerText = 0;
 });
